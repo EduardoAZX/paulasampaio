@@ -82,7 +82,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
     <div class="hero-actions fade-up d4">
       <a href="#contato" class="btn-primary">Quero minha consulta</a>
-      <a href="#resultados" class="btn-ghost">Ver resultados</a>
     </div>
   </div>
 </section>
@@ -284,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="faq-answer">
-          <p>Não. É um procedimento não invasivo e confortável. A maioria das pacientes relata apenas uma sensação de frio nos primeiros minutos de aplicação.</p>
+          <p>Não. É um procedimento não invasivo e super tranquilo, sem nenhum tipo de incômodo. As sessões são confortáveis do início ao fim, e a Dra. Paula acompanha cada etapa do tratamento.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -525,7 +524,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     };
 
     try {
-      const res = await fetch('https://hook.us2.make.com/cjxjnd5wr41srcaf3bjtu8smsohiwym8', {
+      const res = await fetch('https://hook.us2.make.com/9vsv2sf2xmuu4ddf7ta23g4cm3bt25y8', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -533,7 +532,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       if (!res.ok) throw new Error('status ' + res.status);
 
-      window.location.href = 'obrigado.html';
+      // Lead (Pixel + CAPI) só após envio validado e bem-sucedido
+      if (window.paulaTrackLead) { try { await window.paulaTrackLead(); } catch (e) {} }
+
+      window.location.href = 'obrigado';
     } catch (err) {
       btn.textContent = 'Erro ao enviar. Tente novamente.';
       btn.style.background = '#c0392b';
